@@ -12,9 +12,8 @@ class GamesController < ApplicationController
     @letters_ten = params[:letters]
     @user_input = params[:word]
   
-    @letters_ten.chars.all? do |letter|
-      @test3 = @user_input.count(letter) <= @letters_ten.split(" ").count(letter)
-    end
+    @test3 = @user_input.chars.all? { |letter| @user_input.count(letter) <= @letters_ten.split.count(letter) }
+  
     @test2 = english?(@user_input)
       win = @test2 && @test3
     if @test3 == false
@@ -37,7 +36,3 @@ class GamesController < ApplicationController
         end
     end
 end
-
-#The word can’t be built out of the original grid
-#The word is valid according to the grid, but is not a valid English word
-#The word is valid according to the grid and is an English word
